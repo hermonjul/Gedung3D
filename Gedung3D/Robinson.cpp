@@ -76,7 +76,6 @@ void display(void)
     glVertex3f(200.0, -3.0, 200.0);
     glVertex3f(200.0, -3.0, -200.0);
     glEnd();
-    
     glBegin(GL_QUADS);//Jalan diatas halaman Rumah
     glColor3f(0.0f, 0.0f, 0.0f);
     glVertex3f(-200.0, 10.0, -200.0);
@@ -84,6 +83,7 @@ void display(void)
     glVertex3f(200.0, 10.0, 200.0);
     glVertex3f(200.0, 10.0, -200.0);
     glEnd();
+    
     
     glPopMatrix();
     glutSwapBuffers();
