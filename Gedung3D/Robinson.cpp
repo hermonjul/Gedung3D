@@ -79,15 +79,7 @@ void display(void)
     glVertex3f(200.0, -3.0, 200.0);
     glVertex3f(200.0, -3.0, -200.0);
     glEnd();
-    glBegin(GL_QUADS);//Jalan diatas halaman Rumah
-    glColor3f(0.0f, 0.0f, 0.0f);
-    glVertex3f(-200.0, 10.0, -200.0);
-    glVertex3f(-200.0, 10.0, 200.0);
-    glVertex3f(200.0, 10.0, 200.0);
-    glVertex3f(200.0, 10.0, -200.0);
-    glEnd();
 
-    //di bawah ini adalah lobbyadsdadasdda
     glBegin(GL_POLYGON);
 	glColor3f(1.0, 1.0, 1.0);
 	for (int i = 0; i < 360; i++)
