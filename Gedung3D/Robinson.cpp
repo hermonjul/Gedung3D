@@ -55,6 +55,7 @@ void init(void)
 void display(void)
 {
     GLfloat theta;
+    GLUquadricObj* p = gluNewQuadric();
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -64,41 +65,52 @@ void display(void)
 
     glBegin(GL_QUADS);//Jalan halaman Rumah
     glColor3f(0.0f, 0.0f, 0.0f);
-    glVertex3f(-200.0, -3.0, -200.0);
+    glVertex3f(-500.0, -3.0, -500.0);
     glColor3f(0.4f, 0.4f, 0.4f);
-    glVertex3f(-200.0, -3.0, 200.0);
+    glVertex3f(-500.0, -3.0, 500.0);
     glColor3f(0.6f, 0.6f, 0.6f);
-    glVertex3f(200.0, -3.0, 200.0);
+    glVertex3f(500.0, -3.0, 500.0);
     glColor3f(0.8f, 0.8f, 0.8f);
-    glVertex3f(200.0, -3.0, -200.0);
+    glVertex3f(500.0, -3.0, -500.0);
     glEnd();
     glBegin(GL_LINE_LOOP);//Garis Halaman rumah
     glColor3f(0.0f, 0.0f, 0.0f);
-    glVertex3f(-200.0, -3.0, -200.0);
-    glVertex3f(-200.0, -3.0, 200.0);
-    glVertex3f(200.0, -3.0, 200.0);
-    glVertex3f(200.0, -3.0, -200.0);
+    glVertex3f(-500.0, -3.0, -500.0);
+    glVertex3f(-500.0, -3.0, 500.0);
+    glVertex3f(500.0, -3.0, 500.0);
+    glVertex3f(500.0, -3.0, -500.0);
     glEnd();
     
-    glBegin(GL_POLYGON);
-	glColor3f(1.0, 1.0, 1.0);
-	for (float i = 0; i < 360; i++)
-	{
-		theta = i * 3.142 / 180;
-		glVertex3f(0 + 20 * cos(theta), 0.1 , 0 + 20 * sin(theta));
-	}
-	glEnd();
-    glBegin(GL_POLYGON);
-    glColor3f(1.0, 1.0, 1.0);
-    for (float i = 0; i < 360; i++)
-    {
-        theta = i * 3.142 / 180;
-        glVertex3f(0 + 20 * cos(theta), 1.1, 0 + 20 * sin(theta));
-    }
+   
+
+    glColor3f(0.6, 0.8, 0.7);
+    glRotatef(-90, 1.f, 0.f, 0.f);
+    glTranslatef(20.f, 0.f, 0 / 2.0f);
+    gluCylinder(p, 50, 50, 50, 360, 1);
+    glColor3f(0.7, 0.9, 1.0);
+    glTranslatef(0.f, 0.f, 0 / 2.0f);
+    gluDisk(p, 0, 50, 360, 1);
+    glColor3f(0.8, 0.7, 1.0);
+    glTranslatef(0.f, 0.f, 100 / 2.0f);
+    gluDisk(p, 0, 50, 360, 1);
     glEnd();
-    
-    
+    glColor3f(0.6, 0.8, 0.7);
+    glRotatef(0, 1.f, 0.f, 0.f);
+    glTranslatef(0.f, 0.f, 5 / 2.0f);
+    gluCylinder(p, 60, 60, -5, 360, 1);
+    glColor3f(0.7, 0.9, 1.0);
+    glTranslatef(0.f, 0.f, 0 / 2.0f);
+    gluDisk(p, 0, 60, 360, 1);
+    glColor3f(0.8, 0.7, 1.0);
+    glTranslatef(0.f, 0.f, -90 / 2.0f);
+    gluDisk(p, 0, 60, 360, 1);
+    glEnd();
+
+
+
     glPopMatrix();
+
+    
     glutSwapBuffers();
 }
 
@@ -191,7 +203,7 @@ void resize(int width, int height)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(45.0, width / height, 5.0, 400.0);
-    glTranslatef(0.0, -30.0, -250.0);
+    glTranslatef(0.0, -20.0, -250.0);
     glMatrixMode(GL_MODELVIEW);
 }
 
