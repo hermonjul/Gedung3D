@@ -43,7 +43,7 @@ void mouseButton(int button, int state, int x, int y) {
 
 void init(void)
 {
-    glClearColor(0.0, 1.0, 0.906, 0.0);
+    glClearColor(1.0, 1.0, 1.0, 0.0);
     glEnable(GL_DEPTH_TEST);
     glMatrixMode(GL_MODELVIEW);
     glPointSize(9.0);
@@ -59,6 +59,24 @@ void display(void)
     glRotatef(xrot, 1, 0, 0);
     glRotatef(yrot, 0, 1, 0);
 
+    glBegin(GL_QUADS);//Jalan halaman Rumah
+    glColor3f(0.0f, 0.0f, 0.0f);
+    glVertex3f(-200.0, -3.0, -200.0);
+    glColor3f(0.4f, 0.4f, 0.4f);
+    glVertex3f(-200.0, -3.0, 200.0);
+    glColor3f(0.6f, 0.6f, 0.6f);
+    glVertex3f(200.0, -3.0, 200.0);
+    glColor3f(0.8f, 0.8f, 0.8f);
+    glVertex3f(200.0, -3.0, -200.0);
+    glEnd();
+    glBegin(GL_LINE_LOOP);//Garis Halaman rumah
+    glColor3f(0.0f, 0.0f, 0.0f);
+    glVertex3f(-200.0, -3.0, -200.0);
+    glVertex3f(-200.0, -3.0, 200.0);
+    glVertex3f(200.0, -3.0, 200.0);
+    glVertex3f(200.0, -3.0, -200.0);
+    glEnd();
+    
     
     glPopMatrix();
     glutSwapBuffers();
@@ -152,8 +170,8 @@ void resize(int width, int height)
     if (height == 0) height = 1;
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(45.0, width / height, 1.0, 400.0);
-    glTranslatef(0.0, -5.0, -150.0);
+    gluPerspective(45.0, width / height, 5.0, 400.0);
+    glTranslatef(0.0, -30.0, -250.0);
     glMatrixMode(GL_MODELVIEW);
 }
 
