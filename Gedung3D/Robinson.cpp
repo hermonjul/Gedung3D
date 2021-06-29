@@ -84,7 +84,6 @@ void display(void)
     glVertex3f(200.0, 10.0, -200.0);
     glEnd();
     
-    //di bawah ini adalah lobby
     
     glPopMatrix();
     glutSwapBuffers();
