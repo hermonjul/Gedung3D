@@ -5,7 +5,9 @@
 #else
 #include <GL/glut.h>
 #endif
+#include <math.h>
 using namespace std;
+
 float xrot = 0;
 float yrot = 0;
 float xdiff = 0;
@@ -52,7 +54,8 @@ void init(void)
 }
 void display(void)
 {
-
+    GLfloat theta;
+    
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
@@ -85,6 +88,15 @@ void display(void)
     glEnd();
 
     //di bawah ini adalah lobbyadsdadasdda
+    glBegin(GL_POLYGON);
+	glColor3f(1.0, 1.0, 1.0);
+	for (int i = 0; i < 360; i++)
+	{
+		theta = i * 3.142 / 180;
+		glVertex3i(0 + 8 * cos(theta), 5 ,0 + 8 * sin(theta));
+	}
+	glEnd();
+    
     
     glPopMatrix();
     glutSwapBuffers();
