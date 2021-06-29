@@ -79,15 +79,23 @@ void display(void)
     glVertex3f(200.0, -3.0, 200.0);
     glVertex3f(200.0, -3.0, -200.0);
     glEnd();
-
+    
     glBegin(GL_POLYGON);
 	glColor3f(1.0, 1.0, 1.0);
-	for (int i = 0; i < 360; i++)
+	for (float i = 0; i < 360; i++)
 	{
 		theta = i * 3.142 / 180;
-		glVertex3i(0 + 8 * cos(theta), 5 ,0 + 8 * sin(theta));
+		glVertex3f(0 + 20 * cos(theta), 0.1 , 0 + 20 * sin(theta));
 	}
 	glEnd();
+    glBegin(GL_POLYGON);
+    glColor3f(1.0, 1.0, 1.0);
+    for (float i = 0; i < 360; i++)
+    {
+        theta = i * 3.142 / 180;
+        glVertex3f(0 + 20 * cos(theta), 1.1, 0 + 20 * sin(theta));
+    }
+    glEnd();
     
     
     glPopMatrix();
