@@ -1,5 +1,4 @@
 # Gedung3D
 
-- Buka folder Gedung3D
-- Pilih Robinson.Cpp
-- 
+
+  Robinsons Place Manilla merupakan tugas rancang dari asdos dari mata pelajaran Grafika komputer B Universitas Satya Wacana
