@@ -7,7 +7,7 @@
 #endif
 #include <math.h>
 using namespace std;
-
+GLUquadricObj* p = gluNewQuadric();
 float xrot = 0;
 float yrot = 0;
 float xdiff = 0;
@@ -20,6 +20,7 @@ void keyboard(unsigned char, int, int);
 void resize(int, int);
 void mouseMove(int x, int y);
 void mouseButton(int button, int state, int x, int y);
+void silinder(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi);
 
 int is_depth;
 void mouseMove(int x, int y) {
@@ -52,10 +53,40 @@ void init(void)
     glLineWidth(6.0f);
 
 }
+
+void silinder(float red, float green, float blue, float x, float y, float z, float jari_jari,  float tinggi) {
+    //selimut
+    glPushMatrix();
+    glColor3f(red, green, blue);
+    glRotatef(-90, 1.f, 0.f, 0.f);
+    glTranslatef(x, y, z / 2.0f);
+    gluCylinder(p, jari_jari, jari_jari, tinggi, 360, 1);
+    glPopMatrix();
+
+    //bawah
+    glPushMatrix();
+    glColor3f(0.5, 0.5, 0.5);
+    glRotatef(-90, 1.f, 0.f, 0.f);
+    glTranslatef(x, y, z / 2.0f);
+    gluDisk(p, 0, jari_jari, 360, 1);
+    glPopMatrix();
+
+    //atas
+    glPushMatrix();
+    glColor3f(0.5, 0.5, 0.5);
+    glRotatef(-90, 1.f, 0.f, 0.f);
+    glTranslatef(x, y, z / 2.0f + tinggi);
+    gluDisk(p, 0, jari_jari, 360, 1);
+    glPopMatrix();
+
+}
+
+
+
 void display(void)
 {
     GLfloat theta;
-    GLUquadricObj* p = gluNewQuadric();
+   
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -80,32 +111,14 @@ void display(void)
     glVertex3f(500.0, -3.0, 500.0);
     glVertex3f(500.0, -3.0, -500.0);
     glEnd();
+   
+    
+    silinder(0.1, 0.5, 0.8, 0, 0, 0, 50, 50);
+    silinder(0.2, 0.4, 0.7, 60, 0, 50, 50, 50);
+    silinder(0.3, 0.7, 0.6, -60, 0, 50, 50, 50);
+   
     
    
-
-    glColor3f(0.6, 0.8, 0.7);
-    glRotatef(-90, 1.f, 0.f, 0.f);
-    glTranslatef(20.f, 0.f, 0 / 2.0f);
-    gluCylinder(p, 50, 50, 50, 360, 1);
-    glColor3f(0.7, 0.9, 1.0);
-    glTranslatef(0.f, 0.f, 0 / 2.0f);
-    gluDisk(p, 0, 50, 360, 1);
-    glColor3f(0.8, 0.7, 1.0);
-    glTranslatef(0.f, 0.f, 100 / 2.0f);
-    gluDisk(p, 0, 50, 360, 1);
-    glEnd();
-    glColor3f(0.6, 0.8, 0.7);
-    glRotatef(0, 1.f, 0.f, 0.f);
-    glTranslatef(0.f, 0.f, 5 / 2.0f);
-    gluCylinder(p, 60, 60, -5, 360, 1);
-    glColor3f(0.7, 0.9, 1.0);
-    glTranslatef(0.f, 0.f, 0 / 2.0f);
-    gluDisk(p, 0, 60, 360, 1);
-    glColor3f(0.8, 0.7, 1.0);
-    glTranslatef(0.f, 0.f, -90 / 2.0f);
-    gluDisk(p, 0, 60, 360, 1);
-    glEnd();
-
 
 
     glPopMatrix();
