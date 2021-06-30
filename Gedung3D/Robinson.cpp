@@ -86,7 +86,7 @@ void kubus(float red, float green, float blue, float x, float y, float z, float 
     glPushMatrix();
     glColor3f(red, green, blue);
     glTranslatef(x, y + tinggi / 2, z);
-    glRotatef(rotation_z,0.0, 1.0, 0.0f);
+    glRotatef(rotation_z, 0.0, 1.0, 0.0f);
     glScalef(panjang, tinggi, lebar);
     glutSolidCube(1);
     glPopMatrix();
@@ -137,11 +137,41 @@ void display(void)
     kubus(0.2, 0.7, 0.5, -80, 100, 10, 100, 50, 5, -20);
 
     //blakang mall
-    kubus(0.2, 0.4, 0.3, -80, 0, -80, 100, 160, 105, 0);
+    kubus(0.2, 0.4, 0.3, -80, 0, -80, 100, 160, 104.9, 0);
 
     //pilar-pilar
-    silinder(0.3, 0.4, 0.7, 0, -60, 0, 5, 100);
+    silinder(0.3, 0.4, 0.7, -20, -60, 0, 5, 100);
     silinder(0.3, 0.4, 0.7, -50, -35, 0, 5, 100);
+    silinder(0.3, 0.4, 0.7, 20, -60, 0, 5, 100);
+
+    //Gedung kanan dalam 
+    kubus(0.4, 0.4, 0.4, 90, 25.1, 10, 100, 100, 74.9, 0);
+
+    //Gedung kanan dalam (bawah)
+    kubus(0.4, 0.4, 0.4, 100, 0, 17, 100, 100, 25, 0);
+
+    //Gedung kanan luar
+    kubus(0.4, 0.4, 0.4, 150, 24.9, 60, 150, 100, 75.1, 0);
+
+    //Gedung kanan luar bawah
+    kubus(0.3, 0.3, 0.3, 149, 0, 40, 152.1, 100, 99.9, 0);
+
+    //gedung silinder besar
+    silinder(0.3, 0.5, 0.6, 70, -70, 50, 40, 75.1);
+
+    //gedung silinder lobby
+    silinder(0.2, 0.3, 0.7, 70, -70, 0, 20, 25);
+
+    //pilar kanan 
+    silinder(0.3, 0.4, 0.7, 40, -60, 0, 5, 25);
+    silinder(0.3, 0.4, 0.7, 43, -86, 0, 5, 25);
+    silinder(0.3, 0.4, 0.7, 65, -100, 0, 5, 25);
+    silinder(0.3, 0.4, 0.7, 95, -100, 0, 5, 25);
+    silinder(0.3, 0.4, 0.7, 125, -100, 0, 5, 25);
+    silinder(0.3, 0.4, 0.7, 155, -100, 0, 5, 25);
+    silinder(0.3, 0.4, 0.7, 185, -100, 0, 5, 25);
+    silinder(0.3, 0.4, 0.7, 215, -100, 0, 5, 25);
+
 
     glPopMatrix();
 
