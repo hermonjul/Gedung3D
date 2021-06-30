@@ -105,7 +105,7 @@ void display(void)
     glRotatef(xrot, 1, 0, 0);
     glRotatef(yrot, 0, 1, 0);
 
-    glBegin(GL_QUADS);//Jalan halaman Rumah
+    glBegin(GL_QUADS);//Luas Mall
     glColor3f(0.0f, 0.0f, 0.0f);
     glVertex3f(-500.0, -3.0, -500.0);
     glColor3f(0.4f, 0.4f, 0.4f);
@@ -115,7 +115,7 @@ void display(void)
     glColor3f(0.8f, 0.8f, 0.8f);
     glVertex3f(500.0, -3.0, -500.0);
     glEnd();
-    glBegin(GL_LINE_LOOP);//Garis Halaman rumah
+    glBegin(GL_LINE_LOOP);//Garis Halaman Mall
     glColor3f(0.0f, 0.0f, 0.0f);
     glVertex3f(-500.0, -3.0, -500.0);
     glVertex3f(-500.0, -3.0, 500.0);
@@ -131,12 +131,12 @@ void display(void)
     silinder(0.3, 0.4, 0.7, 0, 0, 200, 70, 5);
 
     //lantai 1 - 4
-    kubus(0.1, 0.3, 0.5, -90, 25, 20, 100, 50, 5, -10);
-    kubus(0.4, 0.2, 0.5, -90, 50, 20, 100, 50, 5, -10);
-    kubus(0.6, 0.1, 0.5, -90, 75, 20, 100, 50, 5, -10);
-    kubus(0.2, 0.7, 0.5, -80, 100, 10, 100, 50, 5, -20);
+    kubus(0.1, 0.3, 0.5, -90, 24.9, 20, 100, 50, 4.95, -10);
+    kubus(0.4, 0.2, 0.5, -90, 49.9, 20, 100, 50, 4.95, -10);
+    kubus(0.6, 0.1, 0.5, -90, 74.9, 20, 100, 50, 4.95, -10);
+    kubus(0.2, 0.7, 0.5, -80, 99.9, 10, 100, 50, 4.95, -20);
 
-    //blakang mall
+    //belakang mall
     kubus(0.2, 0.4, 0.3, -80, 0, -80, 100, 160, 104.9, 0);
 
     //pilar-pilar
@@ -171,6 +171,62 @@ void display(void)
     silinder(0.3, 0.4, 0.7, 155, -100, 0, 5, 25);
     silinder(0.3, 0.4, 0.7, 185, -100, 0, 5, 25);
     silinder(0.3, 0.4, 0.7, 215, -100, 0, 5, 25);
+
+    //tembok atas gedung kanan (panjang)
+    kubus(0.2, 0.2, 0.2, 145, 100, 75, 140, 5, 30, 0);
+
+    //tembok kecil atas(kecil)
+    kubus(0.35, 0.35, 0.35, 72, 100, 70, 15, 5, 29, -45);
+
+
+
+    //////////////////////////////////////////
+    //tembok kiri atas bagian depan
+    glColor3f(0.2, 0.2, 0.2);
+    glBegin(GL_QUADS);
+    glVertex3f(64, 100, 66);
+    glVertex3f(69, 100, 66);
+    glVertex3f(69, 130, 66);
+    glVertex3f(64, 130, 66);
+    glEnd();
+
+    //miring atas
+    glColor3f(0.2, 0.2, 0.2);
+    glBegin(GL_QUADS);
+    glVertex3f(64, 130, 66);
+    glVertex3f(69, 130, 66);
+    glVertex3f(69, 110, 0);
+    glVertex3f(64, 110, 0);
+    glEnd();
+
+    //kiri
+    glColor3f(0.2, 0.2, 0.2);
+    glBegin(GL_QUADS);
+    glVertex3f(64, 100, 66);
+    glVertex3f(64, 130, 66);
+    glVertex3f(64, 110, 0);
+    glVertex3f(64, 100, 0);
+    glEnd();
+
+    //kanan
+    glColor3f(0.2, 0.2, 0.2);
+    glBegin(GL_QUADS);
+    glVertex3f(69, 100, 66);
+    glVertex3f(69, 130, 66);
+    glVertex3f(69, 110, 0);
+    glVertex3f(69, 100, 0);
+    glEnd();
+
+    //penutup belakang
+    glColor3f(0.2, 0.2, 0.2);
+    glBegin(GL_QUADS);
+    glVertex3f(64, 100, 0);
+    glVertex3f(69, 100, 0);
+    glVertex3f(69, 110, 0);
+    glVertex3f(64, 110, 0);
+    glEnd();
+
+    ////////////////////////////////////////////
 
 
     glPopMatrix();
@@ -267,7 +323,7 @@ void resize(int width, int height)
     if (height == 0) height = 1;
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(45.0, width / height, 5.0, 400.0);
+    gluPerspective(45.0, width / height, 5.0, 2000.0);
     glTranslatef(0.0, -50.0, -250.0);
     glMatrixMode(GL_MODELVIEW);
 }
