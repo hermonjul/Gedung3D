@@ -21,6 +21,7 @@ void resize(int, int);
 void mouseMove(int x, int y);
 void mouseButton(int button, int state, int x, int y);
 void silinder(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi);
+void kubus(float x, float y, float z, float panjang, float lebar, float tinggi);
 
 int is_depth;
 void mouseMove(int x, int y) {
@@ -81,6 +82,15 @@ void silinder(float red, float green, float blue, float x, float y, float z, flo
 
 }
 
+void kubus(float x, float y, float z, float panjang, float lebar, float tinggi) {
+    glPushMatrix();
+    glColor3f(0.9, 0.4, 0.3);
+    glTranslatef(x, y + tinggi / 2, z);
+    glScalef(panjang, tinggi, lebar);
+    glutSolidCube(1);
+    glPopMatrix();
+}
+
 
 
 void display(void)
@@ -116,7 +126,7 @@ void display(void)
     silinder(0.1, 0.5, 0.8, 0, 0, 0, 50, 50);
     silinder(0.2, 0.4, 0.7, 60, 0, 50, 50, 50);
     silinder(0.3, 0.7, 0.6, -60, 0, 50, 50, 50);
-   
+    kubus(70, 0, 0, 50, 50, 50);
     
    
 
