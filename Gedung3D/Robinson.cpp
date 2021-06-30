@@ -21,7 +21,7 @@ void resize(int, int);
 void mouseMove(int x, int y);
 void mouseButton(int button, int state, int x, int y);
 void silinder(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi);
-void kubus(float x, float y, float z, float panjang, float lebar, float tinggi);
+void kubus(float red, float green, float blue, float x, float y, float z, float panjang, float lebar, float tinggi, float rotation_z);
 
 int is_depth;
 void mouseMove(int x, int y) {
@@ -55,7 +55,7 @@ void init(void)
 
 }
 
-void silinder(float red, float green, float blue, float x, float y, float z, float jari_jari,  float tinggi) {
+void silinder(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi) {
     //selimut
     glPushMatrix();
     glColor3f(red, green, blue);
@@ -82,10 +82,11 @@ void silinder(float red, float green, float blue, float x, float y, float z, flo
 
 }
 
-void kubus(float x, float y, float z, float panjang, float lebar, float tinggi) {
+void kubus(float red, float green, float blue, float x, float y, float z, float panjang, float lebar, float tinggi, float rotation_z) {
     glPushMatrix();
-    glColor3f(0.9, 0.4, 0.3);
+    glColor3f(red, green, blue);
     glTranslatef(x, y + tinggi / 2, z);
+    glRotatef(rotation_z,0.0, 1.0, 0.0f);
     glScalef(panjang, tinggi, lebar);
     glutSolidCube(1);
     glPopMatrix();
@@ -96,8 +97,8 @@ void kubus(float x, float y, float z, float panjang, float lebar, float tinggi) 
 void display(void)
 {
     GLfloat theta;
-   
-    
+
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
@@ -121,19 +122,30 @@ void display(void)
     glVertex3f(500.0, -3.0, 500.0);
     glVertex3f(500.0, -3.0, -500.0);
     glEnd();
-   
-    
-    silinder(0.1, 0.5, 0.8, 0, 0, 0, 50, 50);
-    silinder(0.2, 0.4, 0.7, 60, 0, 50, 50, 50);
-    silinder(0.3, 0.7, 0.6, -60, 0, 50, 50, 50);
-    kubus(70, 0, 0, 50, 50, 50);
-    
-   
 
+    //lantai 1 - 4
+    silinder(0.1, 0.5, 0.8, 0, 0, 0, 50, 100);
+    silinder(0.3, 0.4, 0.7, 0, 0, 50, 70, 5);
+    silinder(0.3, 0.4, 0.7, 0, 0, 100, 70, 5);
+    silinder(0.3, 0.4, 0.7, 0, 0, 150, 70, 5);
+    silinder(0.3, 0.4, 0.7, 0, 0, 200, 70, 5);
+
+    //lantai 1 - 4
+    kubus(0.1, 0.3, 0.5, -90, 25, 20, 100, 50, 5, -10);
+    kubus(0.4, 0.2, 0.5, -90, 50, 20, 100, 50, 5, -10);
+    kubus(0.6, 0.1, 0.5, -90, 75, 20, 100, 50, 5, -10);
+    kubus(0.2, 0.7, 0.5, -80, 100, 10, 100, 50, 5, -20);
+
+    //blakang mall
+    kubus(0.2, 0.4, 0.3, -80, 0, -80, 100, 160, 105, 0);
+
+    //pilar-pilar
+    silinder(0.3, 0.4, 0.7, 0, -60, 0, 5, 100);
+    silinder(0.3, 0.4, 0.7, -50, -35, 0, 5, 100);
 
     glPopMatrix();
 
-    
+
     glutSwapBuffers();
 }
 
@@ -226,7 +238,7 @@ void resize(int width, int height)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(45.0, width / height, 5.0, 400.0);
-    glTranslatef(0.0, -20.0, -250.0);
+    glTranslatef(0.0, -50.0, -250.0);
     glMatrixMode(GL_MODELVIEW);
 }
 
