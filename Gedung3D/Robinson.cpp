@@ -6,9 +6,12 @@
 #include <GL/glut.h>
 #endif
 #include <math.h>
-//#include "loadImageBMP.h"
+#include "loadImageBMP.h"
 
 using namespace std;
+
+GLuint _textureID;
+
 GLUquadricObj* p = gluNewQuadric();
 float xrot = 0;
 float yrot = 0;
@@ -26,6 +29,8 @@ void silinder(float red, float green, float blue, float x, float y, float z, flo
 void kubus(float red, float green, float blue, float x, float y, float z, float panjang, float lebar, float tinggi, float rotation_z);
 void silinderMeja(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi);
 void kursi(float x, float y, float z);
+
+
 
 int is_depth;
 void mouseMove(int x, int y) {
@@ -56,6 +61,9 @@ void init(void)
     glMatrixMode(GL_MODELVIEW);
     glPointSize(9.0);
     glLineWidth(6.0f);
+
+    _textureID = loadBMP_custom("robinson.bmp");
+    
 
 }
 
@@ -231,6 +239,7 @@ void tempat_sampah(float x, float y, float z) {
 void display(void)
 {
     GLfloat theta;
+    glEnable(GL_TEXTURE_2D);
 
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -468,12 +477,20 @@ void display(void)
     //mobil diluar
     mobil(0, 1, 0, -180, 0, 285);
 
+
+    glBindTexture(GL_TEXTURE_2D, _textureID);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     //Papan nama mall
-    glColor3f(0.3, 0.3, 0.3);
+    glColor3f(1.0, 1.0, 1.0);
     glBegin(GL_QUADS);
+    glTexCoord2f(0.0f, 0.0f);
     glVertex3f(-40.0, 105, 50);
+    glTexCoord2f(1.0f, 0.0f);
     glVertex3f(40.0, 105, 50);
+    glTexCoord2f(1.0f, 1.0f);
     glVertex3f(40.0, 130, 50);
+    glTexCoord2f(0.0f, 1.0f);
     glVertex3f(-40.0, 130, 50);
     glEnd();
 
@@ -513,6 +530,22 @@ void display(void)
     glVertex3f(40.0, 130, 50);
     glEnd();
 
+    glBindTexture(GL_TEXTURE_2D, _textureID);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    //papan nama kanan
+    glColor3f(1.0, 1.0, 1.0);
+    glBegin(GL_QUADS);
+    glTexCoord2f(0.0f, 0.0f);
+    glVertex3f(120.0, 100, 78.1);
+    glTexCoord2f(1.0f, 0.0f);
+    glVertex3f(215.0, 100, 78.1);
+    glTexCoord2f(1.0f, 1.0f);
+    glVertex3f(215.0, 130, 78.1);
+    glTexCoord2f(0.0f, 1.0f);
+    glVertex3f(120.0, 130, 78.1);
+    glEnd();
+
 
 
 
@@ -521,6 +554,7 @@ void display(void)
 
 
     glutSwapBuffers();
+    glDisable(GL_TEXTURE_2D);
 }
 
 /*
