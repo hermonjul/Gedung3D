@@ -344,13 +344,23 @@ void display(void)
     kursi(-44, 80, 48);
 
     //patung
-    patung(0, 0, 200);
-    patung(-20, 0, -300);
+    int y_patung = 0, z_patung = -150;
+    for (int i = 0; i < 5; i++) {
+        int x_patung = 0;
+        for (int j = 0; j < 8; j++) {
+            patung(x_patung, y_patung, z_patung);
+            x_patung -= 20;
+        }
+        z_patung -= 25;
+    }
+
+    /*patung(-20, 0, -300);
     patung(-20, 0, -250);
     patung(-20, 0, -200);
+
     patung(0, 0, -300);
     patung(0, 0, -250);
-    patung(0, 0, -200);
+    patung(0, 0, -200);*/
 
 
 
