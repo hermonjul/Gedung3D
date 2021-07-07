@@ -67,7 +67,7 @@ void init(void)
     _textureID = loadBMP_custom("robinson.bmp");
     _textureID1 = loadBMP_custom("robinson.bmp");
     _textureID2 = loadBMP_custom("tembok.bmp");
-    
+
 
 }
 
@@ -390,9 +390,10 @@ void display(void)
     kubus(0.3, 0.3, 0.3f, -130, 24.9, -100, 125, 350, 75, -30);
 
     //Apartement
-    kubus(0.3, 0.3, 0.3, -230, 0, 5, 125, 250, 120, 0);
-    kubus(0.413f, 0.413f, 0.4f, -230, 24.9, 150, 125, 50, 95.1, 0);
-    kubus(0.3, 0.3, 0.3, -230, 0, 200, 125, 50, 120, 0);
+    kubus(0.3, 0.3, 0.3, -230, 0, 5, 125, 250, 100, 0);
+    kubus(0.413f, 0.413f, 0.4f, -230, 24.9, 150, 125, 50, 75.1, 0);
+    kubus(0.3, 0.3, 0.3, -230, 0, 200, 125, 50, 100, 0);
+    kubus(0.513f, 0.513f, 0.5f, -230, 100, 30, 125, 295, 240, 0);
 
     //gedung mall belakang
     kubus(0.3, 0.3, 0.3, -34, 0, -150, 518, 290, 100.1, 0);
@@ -441,7 +442,6 @@ void display(void)
     /*patung(-20, 0, -300);
     patung(-20, 0, -250);
     patung(-20, 0, -200);
-
     patung(0, 0, -300);
     patung(0, 0, -250);
     patung(0, 0, -200);*/
@@ -450,7 +450,7 @@ void display(void)
     int y_meja = 0, z_meja = -150;
     int y_kursi = 0, z_kursi = -150;
     int y_kursi2 = 0, z_kursi2 = -150;
-    for (int i = 0; i < 4; i++){
+    for (int i = 0; i < 4; i++) {
         int x_meja = 100;
         int x_kursi = 92;
         int x_kursi2 = 108;
@@ -522,7 +522,7 @@ void display(void)
     glVertex3f(225.1, 100, 90);
     glEnd();
 
-   
+
     //tembok kanan tambal
     glColor3f(1.0, 1.0, 1.0);
     glBegin(GL_QUADS);
@@ -616,7 +616,8 @@ void display(void)
     glEnd();
 
     //apartment
-    kubus(0.513f, 0.513f, 0.5f, -230, 120, 30, 125, 295, 240, 0);
+    
+    
 
     glBindTexture(GL_TEXTURE_2D, _textureID1);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -634,8 +635,8 @@ void display(void)
     glVertex3f(75.0, 130, 78.1);
     glEnd();
 
-    
-    
+
+
 
 
     glPopMatrix();
