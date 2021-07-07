@@ -25,6 +25,7 @@ void mouseButton(int button, int state, int x, int y);
 void silinder(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi);
 void kubus(float red, float green, float blue, float x, float y, float z, float panjang, float lebar, float tinggi, float rotation_z);
 void silinderMeja(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi);
+void kursi(float x, float y, float z);
 
 int is_depth;
 void mouseMove(int x, int y) {
@@ -84,6 +85,16 @@ void silinderMeja(float red, float green, float blue, float x, float y, float z,
     glPopMatrix();
 
 }
+
+void kursi(float x, float y, float z) {
+    kubus(0.396f, 0.337f, 0.243f, x, y, z, 0.5, 0.5, 2, 0);
+    kubus(0.396f, 0.337f, 0.243f, x, y, z + 2, 0.5, 0.5, 2, 0);
+    kubus(0.396f, 0.337f, 0.243f, x + 2, y, z, 0.5, 0.5, 2, 0);
+    kubus(0.396f, 0.337f, 0.243f, x + 2, y, z + 2, 0.5, 0.5, 2, 0);
+    //alas kursi
+    kubus(0.396f, 0.337f, 0.243f, x + 1, y + 2, z + 1, 4, 4, 0.5, 0);
+}
+
 
 void silinder(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi) {
     //selimut
@@ -300,6 +311,28 @@ void display(void)
     meja_bundar(-36, 110, 48);
     meja_bundar(-36, 160, 48);
 
+    // x = -7
+    kursi(-7, 30, 60);
+    kursi(-7, 55, 60);
+    kursi(-7, 80, 60);
+
+    // x = 5
+    kursi(5, 30, 60);
+    kursi(5, 55, 60);
+    kursi(5, 80, 60);
+
+    //x = -30
+    kursi(-30, 30, 48);
+    kursi(-30, 55, 48);
+    kursi(-30, 80, 48);
+
+    //x = -44
+    kursi(-44, 30, 48);
+    kursi(-44, 55, 48);
+    kursi(-44, 80, 48);
+
+
+    
     glPopMatrix();
 
 
