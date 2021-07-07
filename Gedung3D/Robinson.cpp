@@ -133,6 +133,70 @@ void kubus(float red, float green, float blue, float x, float y, float z, float 
     glPopMatrix();
 }
 
+void tempat_sampah(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi) {
+    //selimut
+    glPushMatrix();
+    glColor3f(red, green, blue);
+    glRotatef(-90, 1.0f, 0.0f, 0.0f);
+    glTranslatef(x, y, z / 2.0f);
+    gluCylinder(p, jari_jari, jari_jari, tinggi, 360, 1);
+    glPopMatrix();
+
+    //bawah
+    glPushMatrix();
+    glColor3f(0.5, 0.5, 0.5);
+    glRotatef(-90, 1.0f, 0.0f, 0.0f);
+    glTranslatef(x, y, z / 2.0f);
+    gluDisk(p, 0, jari_jari, 360, 1);
+    glPopMatrix();
+
+    //atas
+    glPushMatrix();
+    glColor3f(0.2, 0.2, 0.2);
+    glRotatef(-90, 1.0f, 0.0f, 0.0f);
+    glTranslatef(x, y, z / 2.0f + tinggi);
+    gluDisk(p, 0, jari_jari, 360, 1);
+    glPopMatrix();
+
+}
+
+void silinder_ban(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi) {
+    //selimut
+    glPushMatrix();
+    glColor3f(red, green, blue);
+    glRotatef(0, 1.f, 0.f, 0.f);
+    glTranslatef(x, y, z / 2.0f);
+    gluCylinder(p, jari_jari, jari_jari, tinggi, 360, 1);
+    glPopMatrix();
+
+    //bawah
+    glPushMatrix();
+    glColor3f(0.8, 0.8, 0.8);
+    glRotatef(0, 1.f, 0.f, 0.f);
+    glTranslatef(x, y, z / 2.0f);
+    gluDisk(p, 0, jari_jari, 360, 1);
+    glPopMatrix();
+
+    //atas
+    glPushMatrix();
+    glColor3f(0.8, 0.8, 0.8);
+    glRotatef(0, 1.f, 0.f, 0.f);
+    glTranslatef(x, y, z / 2.0f + tinggi);
+    gluDisk(p, 0, jari_jari, 360, 1);
+    glPopMatrix();
+
+}
+
+void mobil(float red, float green, float blue, float x, float y, float z) {
+    silinder_ban(0, 0, 0, x, y, z, 3, 5);
+    silinder_ban(0, 0, 0, x, y, z + 25, 3, 5);
+    silinder_ban(0, 0, 0, x - 20, y, z, 3, 5);
+    silinder_ban(0, 0, 0, x - 20, y, z + 25, 3, 5);
+    kubus(red, green, blue, x - 10, y, (z / 2) + 9, 35, 12, 5, 0);
+    kubus(red, green, blue, x - 10, y, (z / 2) + 9, 20, 12, 10, 0);
+}
+
+
 void meja_bundar(float x, float y, float z) {
     //atas meja
     silinderMeja(0.813f, 0.694f, 0.494f, x, -z, y + (4 * 2), 5, 0.2);
@@ -141,6 +205,7 @@ void meja_bundar(float x, float y, float z) {
     //alas meja
     silinderMeja(0.813f, 0.694f, 0.494f, x, -z, y, 3, 0.2);
 }
+
 void patung(float x, float y, float z) {
     //Kepala
     kubus(0.813f, 0.694f, 0.494f, x, y + 15, z, 4, 4, 4, 0);
@@ -193,13 +258,13 @@ void display(void)
     silinder(0.741f, 0.741f, 0.713f, 0, 0, 200, 70, 5);
 
     //lantai 1 - 4
-    kubus(0.1, 0.3, 0.5, -90, 24.8, 20, 100, 50, 4.90, -10);
-    kubus(0.4, 0.2, 0.5, -90, 49.8, 20, 100, 50, 4.90, -10);
-    kubus(0.6, 0.1, 0.5, -90, 74.8, 20, 100, 50, 4.90, -10);
-    kubus(0.2, 0.7, 0.5, -80, 99.8, 10, 100, 50, 4.90, -20);
+    kubus(0.741f, 0.741f, 0.713f, -90, 24.8, 20, 100, 50, 4.90, -10);
+    kubus(0.741f, 0.741f, 0.713f, -90, 49.8, 20, 100, 50, 4.90, -10);
+    kubus(0.741f, 0.741f, 0.713f, -90, 74.8, 20, 100, 50, 4.90, -10);
+    kubus(0.741f, 0.741f, 0.713f, -80, 99.8, 10, 100, 50, 4.90, -20);
 
     //belakang mall
-    kubus(0.2, 0.4, 0.3, -80, 0, -80, 100, 160, 99.9, 0);
+    kubus(0.413f, 0.413f, 0.4f, -80, 0, -80, 100, 160, 99.9, 0);
 
     //pilar-pilar
     silinder(0.413f, 0.413f, 0.4f, -20, -60, 0, 5, 100);
@@ -292,10 +357,10 @@ void display(void)
 
     //Bagian Kiri
     //lantai 1 - 4
-    kubus(0.4, 0.2, 0.6, -145, 24.9, 60, 50, 140, 4.95, -15);
-    kubus(0.2, 0.2, 0.6, -138, 49.9, 35, 50, 140, 4.95, -15);
-    kubus(0.0, 0.2, 0.6, -129, 74.9, 10, 50, 140, 4.95, -15);
-    kubus(0.8, 0.2, 0.6, -120, 99.9, -15, 50, 140, 4.95, -15);
+    kubus(0.741f, 0.741f, 0.713f, -145, 24.9, 60, 50, 140, 4.95, -15);
+    kubus(0.741f, 0.741f, 0.713f, -138, 49.9, 35, 50, 140, 4.95, -15);
+    kubus(0.741f, 0.741f, 0.713f, -129, 74.9, 10, 50, 140, 4.95, -15);
+    kubus(0.741f, 0.741f, 0.713f, -120, 99.9, -15, 50, 140, 4.95, -15);
 
     //pilar-pilar
     silinder(0.413f, 0.413f, 0.4f, -145, -127, 0, 5, 25);
@@ -303,7 +368,7 @@ void display(void)
     silinder(0.413f, 0.413f, 0.4f, -120, -40, 0, 5, 100);
 
     //Gedung
-    kubus(0.0, 1.0, 0.6, -130, 24.9, -100, 125, 350, 75, -30);
+    kubus(0.3, 0.3, 0.3f, -130, 24.9, -100, 125, 350, 75, -30);
 
     //Apartement
     kubus(0.3, 0.3, 0.3, -230, 0, 5, 125, 250, 120, 0);
@@ -357,10 +422,42 @@ void display(void)
     /*patung(-20, 0, -300);
     patung(-20, 0, -250);
     patung(-20, 0, -200);
-
     patung(0, 0, -300);
     patung(0, 0, -250);
     patung(0, 0, -200);*/
+
+    //foodcourt
+    int y_meja = 0, z_meja = -150;
+    int y_kursi = 0, z_kursi = -150;
+    int y_kursi2 = 0, z_kursi2 = -150;
+    for (int i = 0; i < 4; i++){
+        int x_meja = 100;
+        int x_kursi = 92;
+        int x_kursi2 = 108;
+        for (int j = 0; j < 3; j++)
+        {
+            meja_bundar(x_meja, y_meja, z_meja);
+            kursi(x_kursi, y_kursi, z_kursi);
+            kursi(x_kursi2, y_kursi2, z_kursi2);
+            x_meja += 35;
+            x_kursi += 35;
+            x_kursi2 += 35;
+        }
+        z_meja -= 35;
+        z_kursi -= 35;
+        z_kursi2 -= 35;
+    }
+
+    //Tempat sampah (depan)
+    tempat_sampah(0.4f, 0.4f, 0.4f, 13, -60, 60, 1, 4);
+    tempat_sampah(0.4f, 0.4f, 0.4f, 13, -60, 110, 1, 4);
+    tempat_sampah(0.4f, 0.4f, 0.4f, 13, -60, 160, 1, 4);
+
+    //mobil pameran
+    mobil(0, 0, 1, 50, 5, -400);
+    //mobil diluar
+    mobil(0, 1, 0, -180, 0, 285);
+
 
 
 
