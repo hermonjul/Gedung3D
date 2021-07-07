@@ -6,6 +6,8 @@
 #include <GL/glut.h>
 #endif
 #include <math.h>
+//#include "loadImageBMP.h"
+
 using namespace std;
 GLUquadricObj* p = gluNewQuadric();
 float xrot = 0;
@@ -22,6 +24,7 @@ void mouseMove(int x, int y);
 void mouseButton(int button, int state, int x, int y);
 void silinder(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi);
 void kubus(float red, float green, float blue, float x, float y, float z, float panjang, float lebar, float tinggi, float rotation_z);
+void silinderMeja(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi);
 
 int is_depth;
 void mouseMove(int x, int y) {
@@ -52,6 +55,33 @@ void init(void)
     glMatrixMode(GL_MODELVIEW);
     glPointSize(9.0);
     glLineWidth(6.0f);
+
+}
+
+void silinderMeja(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi) {
+    //selimut
+    glPushMatrix();
+    glColor3f(red, green, blue);
+    glRotatef(-90, 1.f, 0.f, 0.f);
+    glTranslatef(x, y, z / 2.0f);
+    gluCylinder(p, jari_jari, jari_jari, tinggi, 360, 1);
+    glPopMatrix();
+
+    //bawah
+    glPushMatrix();
+    glColor3f(0.5, 0.5, 0.5);
+    glRotatef(-90, 1.f, 0.f, 0.f);
+    glTranslatef(x, y, z / 2.0f);
+    gluDisk(p, 0, jari_jari, 360, 1);
+    glPopMatrix();
+
+    //atas
+    glPushMatrix();
+    glColor3f(0.396f, 0.337f, 0.243f);
+    glRotatef(-90, 1.f, 0.f, 0.f);
+    glTranslatef(x, y, z / 2.0f + tinggi);
+    gluDisk(p, 0, jari_jari, 360, 1);
+    glPopMatrix();
 
 }
 
@@ -90,6 +120,15 @@ void kubus(float red, float green, float blue, float x, float y, float z, float 
     glScalef(panjang, tinggi, lebar);
     glutSolidCube(1);
     glPopMatrix();
+}
+
+void meja_bundar(float x, float y, float z) {
+    //atas meja
+    silinderMeja(0.813f, 0.694f, 0.494f, x, -z, y + (4 * 2), 5, 0.2);
+    //tiang meja
+    kubus(0.813f, 0.694f, 0.494f, x, y / 2, z, 1, 1, 4, 0);
+    //alas meja
+    silinderMeja(0.813f, 0.694f, 0.494f, x, -z, y, 3, 0.2);
 }
 
 
@@ -251,6 +290,16 @@ void display(void)
     //gedung mall belakang
     kubus(0.3, 0.3, 0.3, -34, 0, -150, 518, 290, 100.1, 0);
 
+    // x = 0
+    meja_bundar(0, 60, 60);
+    meja_bundar(0, 110, 60);
+    meja_bundar(0, 160, 60);
+
+    // x = -36
+    meja_bundar(-36, 60, 48);
+    meja_bundar(-36, 110, 48);
+    meja_bundar(-36, 160, 48);
+
     glPopMatrix();
 
 
@@ -356,7 +405,7 @@ int main(int argc, char** argv)
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(900, 900);
     glutInitWindowPosition(40, 40);
-    glutCreateWindow("Fungsi Mouse dan Keyboardss");
+    glutCreateWindow("Robinsons Place Manilla");
     init();
     glutDisplayFunc(display);
     glutKeyboardFunc(keyboard);
