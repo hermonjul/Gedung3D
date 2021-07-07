@@ -283,9 +283,9 @@ void display(void)
     kubus(0.413f, 0.413f, 0.4f, -80, 0, -80, 100, 160, 99.9, 0);
 
     //pilar-pilar
-    silinder(0.413f, 0.413f, 0.4f, -20, -60, 0, 5, 100);
-    silinder(0.413f, 0.413f, 0.4f, -50, -35, 0, 5, 100);
-    silinder(0.413f, 0.413f, 0.4f, 20, -60, 0, 5, 100);
+    silinder(0.813f, 0.694f, 0.494f, -20, -60, 0, 5, 100);
+    silinder(0.813f, 0.694f, 0.494f, -50, -35, 0, 5, 100);
+    silinder(0.813f, 0.694f, 0.494f, 20, -60, 0, 5, 100);
 
     //Gedung kanan dalam 
     kubus(0.4, 0.4, 0.4, 90, 25.1, 10, 100, 100, 74.9, 0);
@@ -306,8 +306,8 @@ void display(void)
     silinder(0.3, 0.3, 0.3, 70, -70, 0, 20, 25);
 
     //pilar kanan 
-    silinder(0.413f, 0.413f, 0.4f, 40, -60, 0, 5, 25);
-    silinder(0.413f, 0.413f, 0.4f, 43, -86, 0, 5, 25);
+    silinder(0.878f, 0.878f, 0.847f, 40, -60, 0, 5, 25);
+    silinder(0.878f, 0.878f, 0.847f, 43, -86, 0, 5, 25);
     silinder(0.413f, 0.413f, 0.4f, 65, -100, 0, 5, 25);
     silinder(0.413f, 0.413f, 0.4f, 95, -100, 0, 5, 25);
     silinder(0.413f, 0.413f, 0.4f, 125, -100, 0, 5, 25);
@@ -541,6 +541,7 @@ void display(void)
     glTexCoord2f(1.0f, 0.0f);
     glVertex3f(215.0, 100, 78.1);
     glTexCoord2f(1.0f, 1.0f);
+    glVertex3f(215.0, 130, 78.1);
     glTexCoord2f(0.0f, 1.0f);
     glVertex3f(120.0, 130, 78.1);
     glEnd();
