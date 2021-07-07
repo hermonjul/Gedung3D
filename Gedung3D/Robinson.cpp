@@ -362,6 +362,29 @@ void display(void)
     patung(0, 0, -250);
     patung(0, 0, -200);*/
 
+    //foodcourt
+    int y_meja = 0, z_meja = -150;
+    int y_kursi = 0, z_kursi = -150;
+    int y_kursi2 = 0, z_kursi2 = -150;
+    for (int i = 0; i < 4; i++){
+        int x_meja = 100;
+        int x_kursi = 92;
+        int x_kursi2 = 108;
+        for (int j = 0; j < 3; j++)
+        {
+            meja_bundar(x_meja, y_meja, z_meja);
+            kursi(x_kursi, y_kursi, z_kursi);
+            kursi(x_kursi2, y_kursi2, z_kursi2);
+            x_meja += 35;
+            x_kursi += 35;
+            x_kursi2 += 35;
+        }
+        z_meja -= 35;
+        z_kursi -= 35;
+        z_kursi2 -= 35;
+    }
+    
+
 
 
     glPopMatrix();
