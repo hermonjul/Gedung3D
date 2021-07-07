@@ -133,7 +133,7 @@ void kubus(float red, float green, float blue, float x, float y, float z, float 
     glPopMatrix();
 }
 
-void tempat_sampah(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi) {
+void silinder_tempat_sampah(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi) {
     //selimut
     glPushMatrix();
     glColor3f(red, green, blue);
@@ -159,6 +159,7 @@ void tempat_sampah(float red, float green, float blue, float x, float y, float z
     glPopMatrix();
 
 }
+
 
 void silinder_ban(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi) {
     //selimut
@@ -217,6 +218,12 @@ void patung(float x, float y, float z) {
     kubus(0.813f, 0.694f, 0.494f, x + 3, y + 8, z, 2, 4, 7, 0);
     //Kaki
     kubus(0.396f, 0.337f, 0.243f, x, y, z, 4, 4, 9, 0);
+}
+
+void tempat_sampah(float x, float y, float z) {
+    silinder_tempat_sampah(0.5f, 0.5f, 0.5f, x, -z, y + 2, 1, 3);
+    silinder_tempat_sampah(0.6f, 0.6f, 0.6f, x, -z, y + 8, 1.5, 1.5);
+    silinder_tempat_sampah(0.4f, 0.4f, 0.4f, x, -z, y, 0.6, 2);
 }
 
 
@@ -450,14 +457,62 @@ void display(void)
     }
 
     //Tempat sampah (depan)
-    tempat_sampah(0.4f, 0.4f, 0.4f, 13, -60, 60, 1, 4);
-    tempat_sampah(0.4f, 0.4f, 0.4f, 13, -60, 110, 1, 4);
-    tempat_sampah(0.4f, 0.4f, 0.4f, 13, -60, 160, 1, 4);
+    tempat_sampah(13, 60, 60);
+    tempat_sampah(13, 110, 60);
+    tempat_sampah(13, 160, 60);
+    //tempat sampah (dalam)
+    tempat_sampah(60, 0, -210);
 
     //mobil pameran
     mobil(0, 0, 1, 50, 5, -400);
     //mobil diluar
     mobil(0, 1, 0, -180, 0, 285);
+
+    //Papan nama mall
+    glColor3f(0.3, 0.3, 0.3);
+    glBegin(GL_QUADS);
+    glVertex3f(-40.0, 105, 50);
+    glVertex3f(40.0, 105, 50);
+    glVertex3f(40.0, 130, 50);
+    glVertex3f(-40.0, 130, 50);
+    glEnd();
+
+    //papan nama mall (belakang)
+    glColor3f(0.2, 0.2, 0.2);
+    glBegin(GL_QUADS);
+    glVertex3f(-40.0, 105, 45);
+    glVertex3f(40.0, 105, 45);
+    glVertex3f(40.0, 130, 45);
+    glVertex3f(-40.0, 130, 45);
+    glEnd();
+
+    //papan nama mall (sisi atas)
+    glColor3f(0.35, 0.35, 0.35);
+    glBegin(GL_QUADS);
+    glVertex3f(-40.0, 130, 50);
+    glVertex3f(40.0, 130, 50);
+    glVertex3f(40.0, 130, 45);
+    glVertex3f(-40.0, 130, 45);
+    glEnd();
+
+    //papan nama mall (sisi kiri)
+    glColor3f(0.33, 0.33, 0.33);
+    glBegin(GL_QUADS);
+    glVertex3f(-40.0, 105, 50);
+    glVertex3f(-40.0, 105, 45);
+    glVertex3f(-40.0, 130, 45);
+    glVertex3f(-40.0, 130, 50);
+    glEnd();
+
+    //papan nama mall (sisi kanan)
+    glColor3f(0.33, 0.33, 0.33);
+    glBegin(GL_QUADS);
+    glVertex3f(40.0, 105, 50);
+    glVertex3f(40.0, 105, 45);
+    glVertex3f(40.0, 130, 45);
+    glVertex3f(40.0, 130, 50);
+    glEnd();
+
 
 
 
