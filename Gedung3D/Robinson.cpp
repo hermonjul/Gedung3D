@@ -6,9 +6,14 @@
 #include <GL/glut.h>
 #endif
 #include <math.h>
-//#include "loadImageBMP.h"
+#include "loadImageBMP.h"
 
 using namespace std;
+
+GLuint _textureID;
+GLuint _textureID1;
+GLuint _textureID2;
+
 GLUquadricObj* p = gluNewQuadric();
 float xrot = 0;
 float yrot = 0;
@@ -26,6 +31,8 @@ void silinder(float red, float green, float blue, float x, float y, float z, flo
 void kubus(float red, float green, float blue, float x, float y, float z, float panjang, float lebar, float tinggi, float rotation_z);
 void silinderMeja(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi);
 void kursi(float x, float y, float z);
+
+
 
 int is_depth;
 void mouseMove(int x, int y) {
@@ -56,6 +63,11 @@ void init(void)
     glMatrixMode(GL_MODELVIEW);
     glPointSize(9.0);
     glLineWidth(6.0f);
+
+    _textureID = loadBMP_custom("robinson.bmp");
+    _textureID1 = loadBMP_custom("robinson.bmp");
+    _textureID2 = loadBMP_custom("tembok.bmp");
+
 
 }
 
@@ -133,7 +145,7 @@ void kubus(float red, float green, float blue, float x, float y, float z, float 
     glPopMatrix();
 }
 
-void tempat_sampah(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi) {
+void silinder_tempat_sampah(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi) {
     //selimut
     glPushMatrix();
     glColor3f(red, green, blue);
@@ -159,6 +171,7 @@ void tempat_sampah(float red, float green, float blue, float x, float y, float z
     glPopMatrix();
 
 }
+
 
 void silinder_ban(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi) {
     //selimut
@@ -219,11 +232,18 @@ void patung(float x, float y, float z) {
     kubus(0.396f, 0.337f, 0.243f, x, y, z, 4, 4, 9, 0);
 }
 
+void tempat_sampah(float x, float y, float z) {
+    silinder_tempat_sampah(0.5f, 0.5f, 0.5f, x, -z, y + 2, 1, 3);
+    silinder_tempat_sampah(0.6f, 0.6f, 0.6f, x, -z, y + 8, 1.5, 1.5);
+    silinder_tempat_sampah(0.4f, 0.4f, 0.4f, x, -z, y, 0.6, 2);
+}
+
 
 
 void display(void)
 {
     GLfloat theta;
+    glEnable(GL_TEXTURE_2D);
 
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -251,7 +271,7 @@ void display(void)
     glEnd();
 
     //lantai 1 - 4
-    silinder(0.3, 0.3, 0.3, 0, 0, 0, 50, 100);
+    silinder(0.2706, 0.482, 0.6157, 0, 0, 0, 50, 100);
     silinder(0.741f, 0.741f, 0.713f, 0, 0, 50, 70, 5);
     silinder(0.741f, 0.741f, 0.713f, 0, 0, 100, 70, 5);
     silinder(0.741f, 0.741f, 0.713f, 0, 0, 150, 70, 5);
@@ -267,9 +287,9 @@ void display(void)
     kubus(0.413f, 0.413f, 0.4f, -80, 0, -80, 100, 160, 99.9, 0);
 
     //pilar-pilar
-    silinder(0.413f, 0.413f, 0.4f, -20, -60, 0, 5, 100);
-    silinder(0.413f, 0.413f, 0.4f, -50, -35, 0, 5, 100);
-    silinder(0.413f, 0.413f, 0.4f, 20, -60, 0, 5, 100);
+    silinder(0.813f, 0.694f, 0.494f, -20, -60, 0, 5, 100);
+    silinder(0.813f, 0.694f, 0.494f, -50, -35, 0, 5, 100);
+    silinder(0.813f, 0.694f, 0.494f, 20, -60, 0, 5, 100);
 
     //Gedung kanan dalam 
     kubus(0.4, 0.4, 0.4, 90, 25.1, 10, 100, 100, 74.9, 0);
@@ -284,27 +304,26 @@ void display(void)
     kubus(0.3, 0.3, 0.3, 149, 0, 40, 152.1, 100, 99.9, 0);
 
     //gedung silinder besar
-    silinder(0.4, 0.4, 0.4, 70, -70, 50, 40, 75.1);
+    silinder(0.321, 0.564, 0.717, 70, -70, 50, 40, 75.1);
 
     //gedung silinder lobby
-    silinder(0.3, 0.3, 0.3, 70, -70, 0, 20, 25);
+    silinder(0.101, 0.458, 0.623, 70, -70, 0, 20, 25);
 
     //pilar kanan 
-    silinder(0.413f, 0.413f, 0.4f, 40, -60, 0, 5, 25);
-    silinder(0.413f, 0.413f, 0.4f, 43, -86, 0, 5, 25);
-    silinder(0.413f, 0.413f, 0.4f, 65, -100, 0, 5, 25);
-    silinder(0.413f, 0.413f, 0.4f, 95, -100, 0, 5, 25);
-    silinder(0.413f, 0.413f, 0.4f, 125, -100, 0, 5, 25);
-    silinder(0.413f, 0.413f, 0.4f, 155, -100, 0, 5, 25);
-    silinder(0.413f, 0.413f, 0.4f, 185, -100, 0, 5, 25);
-    silinder(0.413f, 0.413f, 0.4f, 215, -100, 0, 5, 25);
+    silinder(0.741f, 0.741f, 0.713f, 40, -60, 0, 5, 25);
+    silinder(0.741f, 0.741f, 0.713f, 43, -86, 0, 5, 25);
+    silinder(0.741f, 0.741f, 0.713f, 65, -100, 0, 5, 25);
+    silinder(0.741f, 0.741f, 0.713f, 95, -100, 0, 5, 25);
+    silinder(0.741f, 0.741f, 0.713f, 125, -100, 0, 5, 25);
+    silinder(0.741f, 0.741f, 0.713f, 155, -100, 0, 5, 25);
+    silinder(0.741f, 0.741f, 0.713f, 185, -100, 0, 5, 25);
+    silinder(0.741f, 0.741f, 0.713f, 215, -100, 0, 5, 25);
 
     //tembok atas gedung kanan (panjang)
     kubus(0.2, 0.2, 0.2, 145, 100, 75, 140, 5, 30, 0);
 
     //tembok kecil atas(kecil)
     kubus(0.35, 0.35, 0.35, 72, 100, 70, 15, 5, 29, -45);
-
 
 
     //////////////////////////////////////////
@@ -371,9 +390,10 @@ void display(void)
     kubus(0.3, 0.3, 0.3f, -130, 24.9, -100, 125, 350, 75, -30);
 
     //Apartement
-    kubus(0.3, 0.3, 0.3, -230, 0, 5, 125, 250, 120, 0);
-    kubus(0.413f, 0.413f, 0.4f, -230, 24.9, 150, 125, 50, 95.1, 0);
-    kubus(0.3, 0.3, 0.3, -230, 0, 200, 125, 50, 120, 0);
+    kubus(0.3, 0.3, 0.3, -230, 0, 5, 125, 250, 100, 0);
+    kubus(0.413f, 0.413f, 0.4f, -230, 24.9, 150, 125, 50, 75.1, 0);
+    kubus(0.3, 0.3, 0.3, -230, 0, 200, 125, 50, 100, 0);
+    kubus(0.513f, 0.513f, 0.5f, -230, 100, 30, 125, 295, 240, 0);
 
     //gedung mall belakang
     kubus(0.3, 0.3, 0.3, -34, 0, -150, 518, 290, 100.1, 0);
@@ -430,7 +450,7 @@ void display(void)
     int y_meja = 0, z_meja = -150;
     int y_kursi = 0, z_kursi = -150;
     int y_kursi2 = 0, z_kursi2 = -150;
-    for (int i = 0; i < 4; i++){
+    for (int i = 0; i < 4; i++) {
         int x_meja = 100;
         int x_kursi = 92;
         int x_kursi2 = 108;
@@ -449,14 +469,172 @@ void display(void)
     }
 
     //Tempat sampah (depan)
-    tempat_sampah(0.4f, 0.4f, 0.4f, 13, -60, 60, 1, 4);
-    tempat_sampah(0.4f, 0.4f, 0.4f, 13, -60, 110, 1, 4);
-    tempat_sampah(0.4f, 0.4f, 0.4f, 13, -60, 160, 1, 4);
+    tempat_sampah(13, 60, 60);
+    tempat_sampah(13, 110, 60);
+    tempat_sampah(13, 160, 60);
+    //tempat sampah (dalam)
+    tempat_sampah(60, 0, -210);
 
     //mobil pameran
     mobil(0, 0, 1, 50, 5, -400);
     //mobil diluar
     mobil(0, 1, 0, -180, 0, 285);
+
+    //tekstur tembok
+    glBindTexture(GL_TEXTURE_2D, _textureID2);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glColor3f(1.0, 1.0, 1.0);
+    glBegin(GL_QUADS);
+    glTexCoord2f(0.0, 0.0);
+    glVertex3f(70.0, 25, 110.1);
+    glTexCoord2f(5.0, 0.0);
+    glVertex3f(225.0, 25, 110.1);
+    glTexCoord2f(5.0, 5.0);
+    glVertex3f(225.0, 100, 110.1);
+    glTexCoord2f(0.0, 5.0);
+    glVertex3f(70.0, 100, 110.1);
+    glEnd();
+
+    //tembok belakang
+    glColor3f(1.0, 1.0, 1.0);
+    glBegin(GL_QUADS);
+    glTexCoord2f(0.0, 0.0);
+    glVertex3f(-293.0, 0, -295.1);
+    glTexCoord2f(5.0, 0.0);
+    glVertex3f(225.0, 0, -295.1);
+    glTexCoord2f(5.0, 5.0);
+    glVertex3f(225.0, 100, -295.1);
+    glTexCoord2f(0.0, 5.0);
+    glVertex3f(-293.0, 100, -295.1);
+    glEnd();
+
+    //tembok kanan 
+    glColor3f(1.0, 1.0, 1.0);
+    glBegin(GL_QUADS);
+    glTexCoord2f(0.0, 0.0);
+    glVertex3f(225.1, 0, 90);
+    glTexCoord2f(4.0, 0.0);
+    glVertex3f(225.1, 0, -295);
+    glTexCoord2f(4.0, 4.0);
+    glVertex3f(225.1, 100, -295);
+    glTexCoord2f(0.0, 4.0);
+    glVertex3f(225.1, 100, 90);
+    glEnd();
+
+
+    //tembok kanan tambal
+    glColor3f(1.0, 1.0, 1.0);
+    glBegin(GL_QUADS);
+    glTexCoord2f(0.0, 0.0);
+    glVertex3f(225.1, 25, 90);
+    glTexCoord2f(5.0, 0.0);
+    glVertex3f(225.1, 25, 110);
+    glTexCoord2f(5.0, 5.0);
+    glVertex3f(225.1, 100, 110);
+    glTexCoord2f(0.0, 5.0);
+    glVertex3f(225.1, 100, 90);
+    glEnd();
+
+    //tembok apartment
+    glColor3f(1.0, 1.0, 1.0);
+    glBegin(GL_QUADS);
+    glTexCoord2f(0.0, 0.0);
+    glVertex3f(-293.1, 0, 225.1);
+    glTexCoord2f(5.0, 0.0);
+    glVertex3f(-167.5, 0, 225.1);
+    glTexCoord2f(5.0, 5.0);
+    glVertex3f(-167.5, 120, 225.1);
+    glTexCoord2f(0.0, 5.0);
+    glVertex3f(-293.0, 120, 225.1);
+    glEnd();
+
+    //tembok kiri
+    glColor3f(1.0, 1.0, 1.0);
+    glBegin(GL_QUADS);
+    glTexCoord2f(0.0, 0.0);
+    glVertex3f(-293.1, 0, 130);
+    glTexCoord2f(4.0, 0.0);
+    glVertex3f(-293.1, 0, -295);
+    glTexCoord2f(4.0, 4.0);
+    glVertex3f(-293.1, 100, -295);
+    glTexCoord2f(0.0, 4.0);
+    glVertex3f(-293.1, 100, 130);
+    glEnd();
+
+
+    glBindTexture(GL_TEXTURE_2D, _textureID);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    //Papan nama mall
+    glColor3f(1.0, 1.0, 1.0);
+    glBegin(GL_QUADS);
+    glTexCoord2f(0.0f, 0.0f);
+    glVertex3f(-40.0, 105, 50);
+    glTexCoord2f(1.0f, 0.0f);
+    glVertex3f(40.0, 105, 50);
+    glTexCoord2f(1.0f, 1.0f);
+    glVertex3f(40.0, 130, 50);
+    glTexCoord2f(0.0f, 1.0f);
+    glVertex3f(-40.0, 130, 50);
+    glEnd();
+
+    //papan nama mall (belakang)
+    glColor3f(0.2, 0.2, 0.2);
+    glBegin(GL_QUADS);
+    glVertex3f(-40.0, 105, 45);
+    glVertex3f(40.0, 105, 45);
+    glVertex3f(40.0, 130, 45);
+    glVertex3f(-40.0, 130, 45);
+    glEnd();
+
+    //papan nama mall (sisi atas)
+    glColor3f(0.35, 0.35, 0.35);
+    glBegin(GL_QUADS);
+    glVertex3f(-40.0, 130, 50);
+    glVertex3f(40.0, 130, 50);
+    glVertex3f(40.0, 130, 45);
+    glVertex3f(-40.0, 130, 45);
+    glEnd();
+
+    //papan nama mall (sisi kiri)
+    glColor3f(0.33, 0.33, 0.33);
+    glBegin(GL_QUADS);
+    glVertex3f(-40.0, 105, 50);
+    glVertex3f(-40.0, 105, 45);
+    glVertex3f(-40.0, 130, 45);
+    glVertex3f(-40.0, 130, 50);
+    glEnd();
+
+    //papan nama mall (sisi kanan)
+    glColor3f(0.33, 0.33, 0.33);
+    glBegin(GL_QUADS);
+    glVertex3f(40.0, 105, 50);
+    glVertex3f(40.0, 105, 45);
+    glVertex3f(40.0, 130, 45);
+    glVertex3f(40.0, 130, 50);
+    glEnd();
+
+    //apartment
+
+
+
+    glBindTexture(GL_TEXTURE_2D, _textureID1);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    //papan nama kanan
+    glColor3f(1.0, 1.0, 1.0);
+    glBegin(GL_QUADS);
+    glTexCoord2f(0.0f, 0.0f);
+    glVertex3f(75.0, 100, 78.1);
+    glTexCoord2f(1.0f, 0.0f);
+    glVertex3f(215.0, 100, 78.1);
+    glTexCoord2f(1.0f, 1.0f);
+    glVertex3f(215.0, 130, 78.1);
+    glTexCoord2f(0.0f, 1.0f);
+    glVertex3f(75.0, 130, 78.1);
+    glEnd();
+
 
 
 
@@ -465,6 +643,7 @@ void display(void)
 
 
     glutSwapBuffers();
+    glDisable(GL_TEXTURE_2D);
 }
 
 /*
@@ -576,3 +755,4 @@ int main(int argc, char** argv)
     glutMainLoop();
     return 0;
 }
+
