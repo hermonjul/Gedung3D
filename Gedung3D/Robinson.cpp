@@ -541,7 +541,6 @@ void display(void)
     glTexCoord2f(1.0f, 0.0f);
     glVertex3f(215.0, 100, 78.1);
     glTexCoord2f(1.0f, 1.0f);
-    glVertex3f(215.0, 130, 78.1);
     glTexCoord2f(0.0f, 1.0f);
     glVertex3f(120.0, 130, 78.1);
     glEnd();
