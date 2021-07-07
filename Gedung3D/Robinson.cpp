@@ -133,6 +133,70 @@ void kubus(float red, float green, float blue, float x, float y, float z, float 
     glPopMatrix();
 }
 
+void tempat_sampah(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi) {
+    //selimut
+    glPushMatrix();
+    glColor3f(red, green, blue);
+    glRotatef(-90, 1.0f, 0.0f, 0.0f);
+    glTranslatef(x, y, z / 2.0f);
+    gluCylinder(p, jari_jari, jari_jari, tinggi, 360, 1);
+    glPopMatrix();
+
+    //bawah
+    glPushMatrix();
+    glColor3f(0.5, 0.5, 0.5);
+    glRotatef(-90, 1.0f, 0.0f, 0.0f);
+    glTranslatef(x, y, z / 2.0f);
+    gluDisk(p, 0, jari_jari, 360, 1);
+    glPopMatrix();
+
+    //atas
+    glPushMatrix();
+    glColor3f(0.2, 0.2, 0.2);
+    glRotatef(-90, 1.0f, 0.0f, 0.0f);
+    glTranslatef(x, y, z / 2.0f + tinggi);
+    gluDisk(p, 0, jari_jari, 360, 1);
+    glPopMatrix();
+
+}
+
+void silinder_ban(float red, float green, float blue, float x, float y, float z, float jari_jari, float tinggi) {
+    //selimut
+    glPushMatrix();
+    glColor3f(red, green, blue);
+    glRotatef(0, 1.f, 0.f, 0.f);
+    glTranslatef(x, y, z / 2.0f);
+    gluCylinder(p, jari_jari, jari_jari, tinggi, 360, 1);
+    glPopMatrix();
+
+    //bawah
+    glPushMatrix();
+    glColor3f(0.8, 0.8, 0.8);
+    glRotatef(0, 1.f, 0.f, 0.f);
+    glTranslatef(x, y, z / 2.0f);
+    gluDisk(p, 0, jari_jari, 360, 1);
+    glPopMatrix();
+
+    //atas
+    glPushMatrix();
+    glColor3f(0.8, 0.8, 0.8);
+    glRotatef(0, 1.f, 0.f, 0.f);
+    glTranslatef(x, y, z / 2.0f + tinggi);
+    gluDisk(p, 0, jari_jari, 360, 1);
+    glPopMatrix();
+
+}
+
+void mobil(float red, float green, float blue, float x, float y, float z) {
+    silinder_ban(0, 0, 0, x, y, z, 3, 5);
+    silinder_ban(0, 0, 0, x, y, z + 25, 3, 5);
+    silinder_ban(0, 0, 0, x - 20, y, z, 3, 5);
+    silinder_ban(0, 0, 0, x - 20, y, z + 25, 3, 5);
+    kubus(red, green, blue, x - 10, y, (z / 2) + 9, 35, 12, 5, 0);
+    kubus(red, green, blue, x - 10, y, (z / 2) + 9, 20, 12, 10, 0);
+}
+
+
 void meja_bundar(float x, float y, float z) {
     //atas meja
     silinderMeja(0.813f, 0.694f, 0.494f, x, -z, y + (4 * 2), 5, 0.2);
@@ -141,6 +205,7 @@ void meja_bundar(float x, float y, float z) {
     //alas meja
     silinderMeja(0.813f, 0.694f, 0.494f, x, -z, y, 3, 0.2);
 }
+
 void patung(float x, float y, float z) {
     //Kepala
     kubus(0.813f, 0.694f, 0.494f, x, y + 15, z, 4, 4, 4, 0);
@@ -384,8 +449,16 @@ void display(void)
         z_kursi2 -= 35;
     }
 
-    glColor3f(0.741f, 0.741f, 0.713f);
-    
+    //Tempat sampah (depan)
+    tempat_sampah(0.4f, 0.4f, 0.4f, 13, -60, 60, 1, 4);
+    tempat_sampah(0.4f, 0.4f, 0.4f, 13, -60, 110, 1, 4);
+    tempat_sampah(0.4f, 0.4f, 0.4f, 13, -60, 160, 1, 4);
+
+    //mobil pameran
+    mobil(0, 0, 1, 50, 5, -400);
+    //mobil diluar
+    mobil(0, 1, 0, -180, 0, 285);
+
 
 
 
