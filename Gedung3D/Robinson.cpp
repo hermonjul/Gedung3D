@@ -141,6 +141,18 @@ void meja_bundar(float x, float y, float z) {
     //alas meja
     silinderMeja(0.813f, 0.694f, 0.494f, x, -z, y, 3, 0.2);
 }
+void patung(float x, float y, float z) {
+    //Kepala
+    kubus(0.813f, 0.694f, 0.494f, x, y + 15, z, 4, 4, 4, 0);
+    //badan
+    kubus(0.0, 0.0, 1.0, x, y + 6, z, 4, 4, 9, 0);
+    //tangankiri
+    kubus(0.813f, 0.694f, 0.494f, x + (-3), y + 8, z, 2, 4, 7, 0);
+    //tangankanan
+    kubus(0.813f, 0.694f, 0.494f, x + 3, y + 8, z, 2, 4, 7, 0);
+    //Kaki
+    kubus(0.396f, 0.337f, 0.243f, x, y, z, 4, 4, 9, 0);
+}
 
 
 
@@ -331,8 +343,27 @@ void display(void)
     kursi(-44, 55, 48);
     kursi(-44, 80, 48);
 
+    //patung
+    int y_patung = 0, z_patung = -150;
+    for (int i = 0; i < 5; i++) {
+        int x_patung = 0;
+        for (int j = 0; j < 8; j++) {
+            patung(x_patung, y_patung, z_patung);
+            x_patung -= 20;
+        }
+        z_patung -= 25;
+    }
 
-    
+    /*patung(-20, 0, -300);
+    patung(-20, 0, -250);
+    patung(-20, 0, -200);
+
+    patung(0, 0, -300);
+    patung(0, 0, -250);
+    patung(0, 0, -200);*/
+
+
+
     glPopMatrix();
 
 
