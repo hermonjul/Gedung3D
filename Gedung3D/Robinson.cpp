@@ -92,7 +92,11 @@ void kubus(float red, float green, float blue, float x, float y, float z, float 
     glPopMatrix();
 }
 
-
+void meja_kotak(float x, float y, float z) {
+    silinder(0.813f, 0.694f, 0.494f, x, -z, y+(4*2), 5, 0.2);
+    kubus(0.813f, 0.694f, 0.494f, x, y, z, 1, 1, 4, 0);
+    silinder(0.813f, 0.694f, 0.494f, x, -z, y, 3, 0.2);
+}
 
 void display(void)
 {
@@ -250,6 +254,9 @@ void display(void)
 
     //gedung mall belakang
     kubus(0.3, 0.3, 0.3, -34, 0, -150, 518, 290, 100.1, 0);
+
+    meja_kotak(0, 0, 80);
+    meja_kotak(30, 0, 100);
 
     glPopMatrix();
 
